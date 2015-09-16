@@ -1,0 +1,64 @@
+.pagination {
+    font-size: 100%;
+    overflow:hidden;
+    text-align:center;
+    padding:10px;
+}
+        
+.pagination a {
+    text-decoration: none;
+	border: solid 1px #C6C6C6;
+	color: #000000;
+	background:url(page_off.gif)/*tpa=http://www.wuxizyz.gov.cn/wxzyz/app/javascript/pagination/images/page_off.gif*/ repeat-x;
+}
+
+.pagination a:hover {
+	background:url(page_on.gif)/*tpa=http://www.wuxizyz.gov.cn/wxzyz/app/javascript/pagination/images/page_on.gif*/ repeat-x;
+}
+
+.pagination a.prev {
+	background:url(prev_on.gif)/*tpa=http://www.wuxizyz.gov.cn/wxzyz/app/javascript/pagination/images/prev_on.gif*/ repeat-x;
+}
+
+.pagination span.current.prev {
+	background:url(prev_off.gif)/*tpa=http://www.wuxizyz.gov.cn/wxzyz/app/javascript/pagination/images/prev_off.gif*/ repeat-x;
+}
+
+.pagination a.next {
+	background:url(next_on.gif)/*tpa=http://www.wuxizyz.gov.cn/wxzyz/app/javascript/pagination/images/next_on.gif*/ repeat-x;
+}
+
+.pagination span.current.next {
+	background:url(next_off.gif)/*tpa=http://www.wuxizyz.gov.cn/wxzyz/app/javascript/pagination/images/next_off.gif*/ repeat-x;
+}
+
+.pagination a, .pagination span {
+    padding: 4px 6px;
+    margin-right: 5px;
+	margin-bottom: 5px;
+	min-width:1em;
+	text-align:center;
+}
+
+.pagination .prev{
+    padding: 4px 6px;
+	padding-left: 6px;
+	_padding-left: 10px;
+	*padding-left: 10px;
+}
+
+.pagination .next{
+    padding: 4px 10px;
+	padding-left: 0px;
+}
+
+.pagination .current {
+    color: #FFFFFF;
+	border: solid 1px #C6C6C6;
+	background:url(page_on.gif)/*tpa=http://www.wuxizyz.gov.cn/wxzyz/app/javascript/pagination/images/page_on.gif*/ repeat-x;
+}
+
+.pagination .current.prev, .pagination .current.next{
+	color:#C6C6C6;
+	border-color:#C6C6C6;
+}
