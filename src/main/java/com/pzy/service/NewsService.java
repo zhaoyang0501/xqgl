@@ -48,16 +48,13 @@ public class NewsService {
          return result;
      	}
      
-     public Page<News> findAll(final int pageNumber, final int pageSize,final Date start,final Date end){
+     public Page<News> findAll(final int pageNumber, final int pageSize,final Integer type ){
          PageRequest pageRequest = new PageRequest(pageNumber - 1, pageSize, new Sort(Direction.DESC, "id"));
          Specification<News> spec = new Specification<News>() {
               public Predicate toPredicate(Root<News> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
               Predicate predicate = cb.conjunction();
-              if (start != null) {
-                  predicate.getExpressions().add(cb.greaterThan(root.get("createDate").as(Date.class),start));
-               }
-               if (end!=null) {
-             	  predicate.getExpressions().add(cb.lessThan(root.get("createDate").as(Date.class),end));
+              if (type != null) {
+                  predicate.getExpressions().add(cb.equal(root.get("type").as(Integer.class),type));
                }
               return predicate;
               }

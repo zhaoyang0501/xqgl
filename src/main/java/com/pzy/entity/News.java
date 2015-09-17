@@ -2,6 +2,7 @@ package com.pzy.entity;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,7 +18,23 @@ public class News {
     @GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String title;
+	@Column(columnDefinition="TEXT") 
 	private String context;
+	
+	private Integer type;
+	private String comefrom;
+	public Integer getType() {
+		return type;
+	}
+	public void setType(Integer type) {
+		this.type = type;
+	}
+	public String getComefrom() {
+		return comefrom;
+	}
+	public void setComefrom(String comefrom) {
+		this.comefrom = comefrom;
+	}
 	private Date createDate;
 	
 	public Long getId() {

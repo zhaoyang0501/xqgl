@@ -49,12 +49,12 @@
 							</div>
 							<div class="widget-container">
 								
-									<a class="btn btn-success" style="float: right; margin: 5px;" onclick="$.adminNews.showaddModal()"><i class="icon-plus"></i>发布</a>
 								<table class="responsive table table-striped table-bordered"
 									id="dt_table_view">
 									<thead>
 										<tr>
 											<th >id</th>
+											<th >板块</th>
 											<th >标题</th>
 											<th >正文</th>
 											<th >发布时间</th>

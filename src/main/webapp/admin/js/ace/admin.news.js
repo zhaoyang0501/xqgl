@@ -52,6 +52,8 @@ jQuery.adminNews = {
 					"aoColumns" : [ {
 						"mDataProp" : "id"
 					},{
+						"mDataProp" : "type"
+					},{
 						"mDataProp" : "title"
 					},{
 						"mDataProp" : "context"
@@ -61,8 +63,19 @@ jQuery.adminNews = {
 						"mDataProp" : ""
 					}],
 					"aoColumnDefs" : [
+							{
+								'aTargets' : [1],
+								'fnRender' : function(oObj, sVal) {
+									if(sVal=='1')
+										return "新闻动态";
+									else if(sVal=='2')
+										return "通知公告";
+									else if(sVal=='3')
+										return "宣传报道";
+								}
+							},
 						{
-							'aTargets' : [2],
+							'aTargets' : [3],
 							'fnRender' : function(oObj, sVal) {
 								if(sVal.length>10)
 									return sVal.substring(0,10)+".....";
@@ -71,9 +84,9 @@ jQuery.adminNews = {
 							}
 						},
 						{
-							'aTargets' : [4],
+							'aTargets' : [5],
 							'fnRender' : function(oObj, sVal) {
-								return "<button class=\"btn2 btn-info\" onclick=\"$.adminNews.showEdit("+oObj.aData.id+")\"><i class=\"icon-pencil\"></i>修改</button>"+
+								return ""+
 								 "  <button class=\"btn2 btn-info\" onclick=\"$.adminNews.deleteNews("+oObj.aData.id+")\"><i class=\"icon-trash\"></i> 删除</button>";
 							}
 						},

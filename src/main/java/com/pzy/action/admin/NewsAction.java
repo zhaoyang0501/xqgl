@@ -22,6 +22,8 @@ public class NewsAction extends PageAction {
 	private String name;
 	private Long id;
 	private News news;
+	private String tip;
+
 	private List<News> newss;
 	@Autowired
 	private NewsService newsService;
@@ -68,12 +70,11 @@ public class NewsAction extends PageAction {
 		getResultMap().put("msg", "修改成功");
 		return SUCCESS;
 	}
-	@Action(value = "save", results = { @Result(name = "success",  type = "json",params={"ignoreHierarchy","false"}) })  
+	@Action(value = "save",  results = { @Result(name = "success", location = "/WEB-INF/views/admin/news/create.jsp") })
 	public String saveit() {
 		news.setCreateDate(new Date());
 		newsService.save(news);
-		getResultMap().put("state", "success");
-		getResultMap().put("msg", "保存成功");
+		tip="发布成功！";
 		return SUCCESS;
 	}
 	
@@ -108,5 +109,12 @@ public class NewsAction extends PageAction {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+	public String getTip() {
+		return tip;
+	}
+
+	public void setTip(String tip) {
+		this.tip = tip;
 	}
 }

@@ -13,7 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.pzy.entity.News;
+import com.pzy.entity.Owner;
 import com.pzy.service.NewsService;
+import com.pzy.service.OwnerService;
 
 @ParentPackage("struts-default")  
 @Namespace("/")
@@ -21,9 +23,12 @@ public class IndexAction extends ActionSupport implements SessionAware{
 	private Map<String,Object> session;
 	private List<News> newss;
 	private String tip;
+	private Owner owner;
 	@Autowired
 	private NewsService newsService;
 	
+	@Autowired
+	private  OwnerService ownerService;
 	
 	@Action(value = "index", results = { @Result(name = "success", location = "/WEB-INF/views/index.jsp") })
 	public String index() throws Exception {
@@ -69,7 +74,12 @@ public class IndexAction extends ActionSupport implements SessionAware{
 	public String register() throws Exception {
 		return SUCCESS;
 	}
-	
+	@Action(value = "doregister", results = { @Result(name = "success", location = "/WEB-INF/views/index.jsp") })
+	public String doregister() throws Exception {
+		ownerService.save(owner);
+		tip="注册成功！";
+		return SUCCESS;
+	}
 	
 	public List<News> getNewss() {
 		return newss;
@@ -92,5 +102,11 @@ public class IndexAction extends ActionSupport implements SessionAware{
 	}
 	public Map<String, Object> getSession() {
 		return session;
+	}
+	public Owner getOwner() {
+		return owner;
+	}
+	public void setOwner(Owner owner) {
+		this.owner = owner;
 	}
 }
