@@ -12,12 +12,17 @@
 		<link type="text/css" rel="stylesheet" href="pagination_new.css"  />
 		<script type="text/javascript">
 			$(document).ready(function(){
-				$("#_notice").addClass("current");
+				$("#_park").addClass("current");
 				if("${tip}" != null && "${tip}" != ""){
 					alert("${tip}");
 				}
 			});
 		</script>
+		<style type="text/css">
+			.td_style1{border-bottom: 1px solid #F2AEAE;border-right: 1px solid #F2AEAE;}
+			.td_style2{border-top: 1px solid #F2AEAE;}
+			.td_style3{border-left: 1px solid #F2AEAE;}
+		</style>
 </head>
 <body>
 	<div id="top">
@@ -39,30 +44,35 @@
 			</div>
 			<!-- 面包屑 -->
 			<div class="address">
-				目前位置：<a href="" >首页</a><span>></span><span>小区公告</span>
+				目前位置：<a href="" >首页</a><span>></span><span>停车位查询</span>
 			</div>
 			<!-- 正文 -->
-			<div class="readbox">
-				<div class="title"><span>小区公告</span></div>
-				<div class="view">
-					<div class="list" id="dataList">
-						<ul>
-						<c:forEach items="${newss}" var="bean">
-						<li><a href="detail?id=${bean.id}" target="_blank">${bean.title}</a><span>${bean.createDate}</span></li>
-						</c:forEach>
-						</ul>
-					</div>
-					<div class="clear"></div>
-					<div id="pageNavigation"
-						style="height: 50px; display: block; padding-top: 15px; margin: auto;">
-						<div class="pagination">
-								<a href="./news?page=${page>0?page:1}" class="current prev">下一页</a>
-								<a href="./news?page=${page+1 }" class="next">下一页</a>
-						</div>
+				<div class="readbox">
+					<div class="view">
+						<table cellpadding="0" cellspacing="0" style="margin-top: 20px;margin-bottom: 20px;width: 100%">
+							<thead>
+								<tr style="background-color: #FBE6E5;">
+									<th height="30" class="td_style1 td_style2 td_style3">车位编号</th>
+									<th  class="td_style1 td_style2">启用日期</th>
+									<th  class="td_style1 td_style2">到期</th>
+									<th  class="td_style1 td_style2">车牌号</th>
+									<th class="td_style1 td_style2">状态</th>
+								</tr>
+							</thead>
+							<tbody id="activity_list">
+							<c:forEach items="${parks}" var="bean">
+							<tr>
+								  <td height="30" class="td_style1 td_style3">${bean.id }</td>
+								  <td align="center" class="td_style1">${bean.startDate }</td>
+								  <td align="center" class="td_style1">${bean.endDate }</td>
+								  <td align="center" class="td_style1">${bean.carno }</td>
+								  <td align="center" class="td_style1">${bean.state }</td>
+								</tr>
+							</c:forEach>
+							</tbody>
+						</table>
 					</div>
 				</div>
-			</div>
-			
 		</div>
 		<div class="bot"></div>
 	</div>

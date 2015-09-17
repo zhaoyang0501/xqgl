@@ -32,6 +32,7 @@ public class IndexAction extends ActionSupport implements SessionAware{
 	
 	@Action(value = "index", results = { @Result(name = "success", location = "/WEB-INF/views/index.jsp") })
 	public String index() throws Exception {
+		newss=newsService.findTop3();
 		return SUCCESS;
 	}
 	@Action(value = "apply", results = { @Result(name = "success", location = "/WEB-INF/views/apply.jsp") })
@@ -45,29 +46,29 @@ public class IndexAction extends ActionSupport implements SessionAware{
 	 @Action(value = "loginout", results = { @Result(name = "success", location = "/WEB-INF/views/index.jsp") })
      public String loginout(){
 	 	ActionContext.getContext().getSession().remove("user");
-	 	ActionContext.getContext().getSession().remove("grades");
 	 	ActionContext.getContext().getSession().clear();
 		newss=newsService.findTop3();
 	 	tip="成功退出登陆";
 	 	return SUCCESS;
      }
 	 @Action(value = "dologin", 
-	    		results = { @Result(name = "success" , location = "grades.jsp") ,
-	    					@Result(name = "login", location = "/WEB-INF/views/login.jsp") })  
+	    		results = { @Result(name = "success" , location = "/WEB-INF/views/index.jsp") ,
+	    					@Result(name = "login", location = "/WEB-INF/views/index.jsp") })  
 	    public String dologin() throws Exception { 
-	    	/*User loginuser=userService.login(user.getId(), user.getPassword());
-	    	if(loginuser!=null){
-	    		session.put("user",loginuser );
-	    		session.put("grades",loginuser.getGrades() );
-	    		users=userService.findByNews((Grades) ServletActionContext.getRequest().getSession().getAttribute("grades"));
+	    	Owner bean=ownerService.login(owner.getUsername(),owner.getPassword() );
+	    	if(bean!=null){
+	    		session.put("user",bean );
+	    		ActionContext.getContext().getSession().put("user", bean);
+	    		this.tip="登录成功!";
+	    		newss=newsService.findTop3();
 	            return SUCCESS; 
 	    	}
 	    	else{
 	    		ActionContext.getContext().getSession().clear();
 	    		this.tip="登陆失败 不存在此用户名或密码!";
+	    		newss=newsService.findTop3();
 	    		return LOGIN;
-	    	}*/
-		 return SUCCESS; 
+	    	}
 	    } 
 	
 	@Action(value = "register", results = { @Result(name = "success", location = "/WEB-INF/views/register.jsp") })
@@ -76,6 +77,7 @@ public class IndexAction extends ActionSupport implements SessionAware{
 	}
 	@Action(value = "doregister", results = { @Result(name = "success", location = "/WEB-INF/views/index.jsp") })
 	public String doregister() throws Exception {
+		newss=newsService.findTop3();
 		ownerService.save(owner);
 		tip="注册成功！";
 		return SUCCESS;

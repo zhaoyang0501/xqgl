@@ -31,10 +31,10 @@ jQuery.adminCost = {
 						$('[rel="popover"],[data-rel="popover"]').popover();
 					},
 					"fnServerData" : function(sSource, aoData, fnCallback) {
-						var costName = $("#_costName").val();
+						var costName = $("#_name").val();
 						if (!!costName) {
 							aoData.push({
-								"name" : "costName",
+								"name" : "name",
 								"value" : costName
 							});
 						}

@@ -84,16 +84,16 @@
 			<button type="button" class="close" data-dismiss="modal">×</button>
 			<label id="_modal_header_label"></label>
 		</div>
-		<div class="modal-body" style="min-height: 500px;">
+		<div class="modal-body" style="min-height: 600px;">
 			<div class="row-fluid">
 				<div class="span12">
 					<div class="form-container grid-form form-background left-align form-horizontal">
 						 <form id='_form' action="${pageContext.request.contextPath}/admin/worker/save"   enctype="multipart/form-data" method="post">
-							<input type="hidden" id="worker.id" placeholder="">
+							<input type="hidden" name='worker.id' id="worker.id" placeholder="">
 							<div class="control-group">
 								<label for="title" class="control-label">用户名：</label>
 								<div class="controls">
-									<input type="text" name="worker.name" placeholder="">
+									<input type="text" name="worker.username" placeholder="">
 								</div>
 							</div>
 							<div class="control-group">
@@ -113,7 +113,8 @@
 								<div class="controls">
 									<select name='worker.sex'>
 										<option value="男">男</option>
-										<option value="男">男</option>
+										<option value="女">女</option>
+										<option value="未知">未知</option>
 									</select>
 								</div>
 							</div>

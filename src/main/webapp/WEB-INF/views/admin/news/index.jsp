@@ -58,6 +58,7 @@
 											<th >标题</th>
 											<th >正文</th>
 											<th >发布时间</th>
+												<th >操作</th>
 										</tr>
 									</thead>
 									<tbody>

@@ -31,10 +31,10 @@ jQuery.adminOwner = {
 						$('[rel="popover"],[data-rel="popover"]').popover();
 					},
 					"fnServerData" : function(sSource, aoData, fnCallback) {
-						var ownerName = $("#_ownerName").val();
+						var ownerName = $("#_name").val();
 						if (!!ownerName) {
 							aoData.push({
-								"name" : "ownerName",
+								"name" : "name",
 								"value" : ownerName
 							});
 						}
@@ -64,15 +64,19 @@ jQuery.adminOwner = {
 						"mDataProp" : "area"
 					}, {
 						"mDataProp" : "count"
+					}, {
+						"mDataProp" : "username"
+					}, {
+						"mDataProp" : "password"
 					},{
 						"mDataProp" : ""
 					}],
 					"aoColumnDefs" : [
 						{
-							'aTargets' : [8],
+							'aTargets' : [10],
 							'fnRender' : function(oObj, sVal) {
-								return"  <button class=\"btn2 btn-info\" onclick=\"$.adminOwner.deleteOwner("+oObj.aData.id+")\"><i class=\"icon-trash\"></i> 删除</button>" +
-								" <button class=\"btn2 btn-info\" onclick=\"$.adminOwner.showEdit("+oObj.aData.id+")\"><i class=\"icon-pencil\"></i>编辑</button>";
+								return"  <button class=\"btn2 btn-info\" onclick=\"$.adminOwner.deleteOwner('"+oObj.aData.id+"')\"><i class=\"icon-trash\"></i> 删除</button>" +
+								" <button class=\"btn2 btn-info\" onclick=\"$.adminOwner.showEdit('"+oObj.aData.id+"')\"><i class=\"icon-pencil\"></i>编辑</button>";
 							}
 						},
 					 {
@@ -150,7 +154,9 @@ jQuery.adminOwner = {
     				"owner.sex":$("#sex").val(),
     				"owner.job":$("#job").val(),
     				"owner.area":$("#area").val(),
-    				"owner.count":$("#count").val()
+    				"owner.count":$("#count").val(),
+    				"owner.username":$("#username").val(),
+    				"owner.password":$("#password").val()
     			},
     			dataType : "json",
     			success : function(json) {

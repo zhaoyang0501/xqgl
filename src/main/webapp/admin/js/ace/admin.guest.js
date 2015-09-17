@@ -34,7 +34,7 @@ jQuery.adminGuest = {
 						var guestName = $("#_guestName").val();
 						if (!!guestName) {
 							aoData.push({
-								"name" : "guestName",
+								"name" : "name",
 								"value" : guestName
 							});
 						}
@@ -61,13 +61,15 @@ jQuery.adminGuest = {
 					}, {
 						"mDataProp" : "owner.name"
 					}, {
+						"mDataProp" : "type"
+					}, {
 						"mDataProp" : "createDate"
 					},{
 						"mDataProp" : ""
 					}],
 					"aoColumnDefs" : [
 						{
-							'aTargets' : [7],
+							'aTargets' : [8],
 							'fnRender' : function(oObj, sVal) {
 								return"  <button class=\"btn2 btn-info\" onclick=\"$.adminGuest.deleteGuest("+oObj.aData.id+")\"><i class=\"icon-trash\"></i> 删除</button>" +
 								" <button class=\"btn2 btn-info\" onclick=\"$.adminGuest.showEdit("+oObj.aData.id+")\"><i class=\"icon-pencil\"></i>编辑</button>";

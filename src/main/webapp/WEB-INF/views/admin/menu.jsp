@@ -30,7 +30,9 @@
 					<li><a href="${pageContext.request.contextPath}/admin/owner/index"><i class="icon-zoom-in"></i> 业主管理</a></li>
 					<li><a href="${pageContext.request.contextPath}/admin/worker/index"><i class="icon-zoom-in"></i> 物业人员管理</a></li>
 					<li><a href="${pageContext.request.contextPath}/admin/news/index"><i class="icon-zoom-in"></i> 新闻公告管理</a></li>
-					<li><a href="${pageContext.request.contextPath}/admin/news/create"><i class="icon-zoom-in"></i> 新闻公告管理</a></li>
+					<li><a href="${pageContext.request.contextPath}/admin/news/create"><i class="icon-zoom-in"></i> 新闻公告发布</a></li>
+					<li><a href="${pageContext.request.contextPath}/admin/park/index"><i class="icon-zoom-in"></i> 停车位管理</a></li>
+					<li><a href="${pageContext.request.contextPath}/admin/cost/index"><i class="icon-zoom-in"></i> 收费管理</a></li>
 				</ul>
 			</div>
 		</div>

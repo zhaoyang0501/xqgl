@@ -78,7 +78,18 @@
 									</select>
 								</div>
 							</div>
-							
+								<div class="control-group">
+								<label for="title" class="control-label">分类：</label>
+								<div class="controls">
+									
+									<select name="guest.type">
+											<option value="亲戚">亲戚</option>
+											<option value="朋友">朋友</option>
+											<option value="广告推销">广告推销</option>
+											<option value="陌生人 ">陌生人 </option>
+									</select>
+								</div>
+							</div>
 							<div class="control-group">
 								<label for="title" class="control-label">电话：</label>
 								<div class="controls">

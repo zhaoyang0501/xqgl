@@ -12,7 +12,7 @@
 		<link type="text/css" rel="stylesheet" href="pagination_new.css"  />
 		<script type="text/javascript">
 			$(document).ready(function(){
-				$("#_index").addClass("current");
+				$("#_center").addClass("current");
 			});
 		</script>
 </head>
@@ -36,7 +36,7 @@
 			</div>
 			<!-- 面包屑 -->
 			<div class="address">
-				目前位置：<a href="" >首页</a><span>></span><span>业主注册</span>
+				目前位置：<a href="" >首页</a><span>></span><span>业主中心</span>
 			</div>
 			<!-- 正文 -->
 			
@@ -44,7 +44,7 @@
 					<div class="title">
 						<ul>
 							<li class="current">
-								<span><a href="javascript:void(0);">业主注册</a></span>
+								<span><a href="javascript:void(0);">业主中心</a></span>
 							</li>
 						</ul>
 					</div>
@@ -149,43 +149,64 @@
 									</li>
 								</ul>
 							</div>
-							
 							<div class="class">
-								<b>免责条款</b>
+								<b>我的访客记录</b>
 							</div>
 							<div class="form">
-								<ul>
-									<li>
-										<div class="name">
-											&nbsp;
-										</div>
-										<textarea style="width: 670px;height: 180px;font-size: 13px;" readonly="readonly">　　小区管理服务平台（以下简称“平台”）所有活动均为非赢利性质的，采取自愿参加、风险自担、责任自负的原则；参与者应为年满18周岁、具有完全民事行为能力的自然人，（未满18周岁必须在相关部门学校的组织下、并在其监护人知晓并监督的情况下）自愿接受并遵守活动发布内容中的规则和事项，参加者必须对自己的安全负责，活动中发生任何意外及损害，本平台在任何情况下皆不承担任何法律和经济责任，本平台仅作为信息发布的渠道，特此声明！参加者必须在参加活动之前完全阅读本声明，声明条款自动生效并表明参加者全部接受本声明内容。
-免责条款
-
-一、参与者应为年满18周岁、具有完全民事行为能力的自然人，（未满18周岁必须在相关部门学校的组织下、并在其监护人知晓并监督的情况下）自愿接受并遵守活动发布内容中的规则和事项。 
-
-二、活动应遵守国家相关法律、法规及本平台的相关规定，符合积极向上的社会道德风尚，一切因志愿服务活动参与者直接或间接引起的法律责任由参与者自行独自承担。 
-
-三、本平台不从活动组织中收取任何费用或盈利，不对任何个人或机构承担民事赔偿责任或补充民事赔偿责任，亦不担保或提供任何参加人的人身和财产的安全保障。
-
-四、活动参与者已确认自己有充分的身体、心理和物质上的准备而参加活动；对活动中的一切风险及导致的各种后果均自我负责和承担，并承诺在活动中发生的一切有关自己人身、财产和精神的损失均不会向平台追究法律上的责任。
-
-五、平台在发布申请者的相关活动内容和需求后，不排除因受人为或自然因素影响导致的对原计划的变更和取消。平台仅保证在取消活动或变更相关内容前，尽可能通知到报名参与者，并说明原因，但不负责承担由此给参与者造成的人身、财产和精神上的损失。 
-
-六、如发生恶意侵犯他人或其它涉及犯罪的行为，则由受害人依法向相关侵害人追究法律责任。 
-
-　　鉴于活动难免会存在不可预知的危险性，请务必仔细阅读本声明及附带条款，本声明将自动生效并表明参加者已默认接受，如志愿者对本声明条款存在异议或不能接受，请在志愿活动开始前退出活动。活动组织者务必在每次活动前告知参与者仔细阅读本声明。
-										</textarea>
-									</li>
-									<li>
-										<div class="name">
-											<b class="blank">&nbsp;</b>
-										</div>
-										同意上述条款内容，并已经认真阅读
-									</li>
-								</ul>
+								<table cellpadding="0" cellspacing="0" style="margin-top: 20px;margin-bottom: 20px;width: 100%">
+									<thead>
+										<tr style="background-color: #FBE6E5;">
+											<th height="30" class="td_style1 td_style2 td_style3">访客姓名</th>
+											<th  class="td_style1 td_style2">到访时间</th>
+											<th  class="td_style1 td_style2">来自</th>
+											<th  class="td_style1 td_style2">类别</th>
+											<th class="td_style1 td_style2">电话</th>
+											<th class="td_style1 td_style2">车牌</th>
+										</tr>
+									</thead>
+									<tbody id="activity_list">
+									<c:forEach items="${guests}" var="bean">
+									<tr>
+										  <td height="30" class="td_style1 td_style3">${bean.name }</td>
+										  <td align="center" class="td_style1">${bean.createDate }</td>
+										  <td align="center" class="td_style1">${bean.comefrom }</td>
+										  <td align="center" class="td_style1">${bean.type }</td>
+										  <td align="center" class="td_style1">${bean.phone }</td>
+										  <td align="center" class="td_style1">${bean.carno }</td>
+										</tr>
+									</c:forEach>
+									</tbody>
+								</table>
 							</div>
-							<input type="submit" class="submit" value="" />
+							<div class="class">
+								<b>我的缴费</b>
+							</div>
+							<div class="form">
+								<table cellpadding="0" cellspacing="0" style="margin-top: 20px;margin-bottom: 20px;width: 100%">
+									<thead>
+										<tr style="background-color: #FBE6E5;">
+											<th height="30" class="td_style1 td_style2 td_style3">流水单据号</th>
+											<th  class="td_style1 td_style2">单据生成时间</th>
+											<th  class="td_style1 td_style2">单价</th>
+											<th  class="td_style1 td_style2">总价</th>
+											<th class="td_style1 td_style2">年份</th>
+											<th class="td_style1 td_style2">状态</th>
+										</tr>
+									</thead>
+									<tbody id="activity_list">
+									<c:forEach items="${costs}" var="bean">
+									<tr>
+										  <td height="30" class="td_style1 td_style3">${bean.id }</td>
+										  <td align="center" class="td_style1">${bean.createDate }</td>
+										  <td align="center" class="td_style1">${bean.price }</td>
+										  <td align="center" class="td_style1">${bean.cash }</td>
+										  <td align="center" class="td_style1">${bean.year }</td>
+										  <td align="center" class="td_style1">${bean.state }</td>
+										</tr>
+									</c:forEach>
+									</tbody>
+								</table>
+							</div>
 						</form>
 					</div>
 				</div>

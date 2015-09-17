@@ -35,7 +35,7 @@ jQuery.adminNews = {
 						var name = $("#_name").val();
 						if (!!name) {
 							aoData.push({
-								"name" : "name",
+								"name" : "title",
 								"value" : name
 							});
 						}
@@ -77,7 +77,7 @@ jQuery.adminNews = {
 						{
 							'aTargets' : [3],
 							'fnRender' : function(oObj, sVal) {
-								if(sVal.length>10)
+								if(sVal.length>30)
 									return sVal.substring(0,10)+".....";
 								else 
 									return sVal;

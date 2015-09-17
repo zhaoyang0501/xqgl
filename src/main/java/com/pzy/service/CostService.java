@@ -17,6 +17,8 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.pzy.entity.Cost;
+import com.pzy.entity.Guest;
+import com.pzy.entity.Owner;
 import com.pzy.repository.CostRepository;
 
 @Service
@@ -34,7 +36,7 @@ public class CostService {
                     public Predicate toPredicate(Root<Cost> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
                     Predicate predicate = cb.conjunction();
                     if (costName != null) {
-                         predicate.getExpressions().add(cb.like(root.get("costName").as(String.class), costName+"%"));
+                         predicate.getExpressions().add(cb.like(root.get("year").as(String.class), costName+"%"));
                     }
                     return predicate;
                     }
@@ -52,5 +54,7 @@ public class CostService {
     	 costRepository.save(Cost);
      }
      
-     
+     public List<Cost> findByOwner(Owner owner){
+    	 return costRepository.findByOwner(owner);
+     } 
 }

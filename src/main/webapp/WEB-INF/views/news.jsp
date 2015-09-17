@@ -8,10 +8,11 @@
 <script language="javaScript" type="text/javascript" src="js/jquery.js" ></script>
 <link type="text/css" rel="stylesheet" href="css/style.css" />
 <link type="text/css" rel="stylesheet" href="css/pagination_new.css" />
-		<title>小区管理11</title>
+		<title>小区管理</title>
 		<link type="text/css" rel="stylesheet" href="pagination_new.css"  />
 		<script type="text/javascript">
 			$(document).ready(function(){
+				$("#_news").addClass("current");
 				if("${tip}" != null && "${tip}" != ""){
 					alert("${tip}");
 				}
@@ -47,7 +48,7 @@
 					<div class="list" id="dataList">
 						<ul>
 						<c:forEach items="${newss}" var="bean">
-						<li><a href="detail/id=${bean.id}" target="_blank">${bean.title}</a><span>${bean.createDate}</span></li>
+							<li><a href="detail?id=${bean.id}" target="_blank">${bean.title}</a><span>${bean.createDate}</span></li>
 						</c:forEach>
 						</ul>
 					</div>

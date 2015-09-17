@@ -34,7 +34,7 @@ public class WorkerService {
                     public Predicate toPredicate(Root<Worker> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
                     Predicate predicate = cb.conjunction();
                     if (workerName != null) {
-                         predicate.getExpressions().add(cb.like(root.get("workerName").as(String.class), workerName+"%"));
+                         predicate.getExpressions().add(cb.like(root.get("name").as(String.class), workerName+"%"));
                     }
                     return predicate;
                     }

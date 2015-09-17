@@ -17,6 +17,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.pzy.entity.Guest;
+import com.pzy.entity.Owner;
 import com.pzy.repository.GuestRepository;
 
 @Service
@@ -34,7 +35,7 @@ public class GuestService {
                     public Predicate toPredicate(Root<Guest> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
                     Predicate predicate = cb.conjunction();
                     if (guestName != null) {
-                         predicate.getExpressions().add(cb.like(root.get("guestName").as(String.class), guestName+"%"));
+                         predicate.getExpressions().add(cb.like(root.get("name").as(String.class), guestName+"%"));
                     }
                     return predicate;
                     }
@@ -50,5 +51,8 @@ public class GuestService {
      }
      public void save(Guest Guest){
     	 guestRepository.save(Guest);
+     }
+     public List<Guest> findByOwner(Owner owner){
+    	 return guestRepository.findByOwner(owner);
      }
 }

@@ -62,6 +62,8 @@
 											<th >职业</th>
 											<th >房间面积</th>
 											<th >人口</th>
+											<th >用户名</th>
+											<th >密码</th>
 											<th >操作</th>
 										</tr>
 									</thead>
@@ -83,7 +85,7 @@
 			<button type="button" class="close" data-dismiss="modal">×</button>
 			<label id="_modal_header_label"></label>
 		</div>
-		<div class="modal-body" style="min-height: 400px;">
+		<div class="modal-body" style="min-height: 600px;">
 			<div class="row-fluid">
 				<div class="span12">
 					<div class="form-container grid-form form-background left-align form-horizontal">
@@ -151,6 +153,19 @@
 								<label for="title" class="control-label">家庭人口：</label>
 								<div class="controls">
 									<input type="text"  id='count' placeholder="">
+								</div>
+							</div>
+							
+							<div class="control-group">
+								<label for="title" class="control-label">用户名：</label>
+								<div class="controls">
+									<input type="text"  id='username' placeholder="">
+								</div>
+							</div>
+							<div class="control-group">
+								<label for="title" class="control-label">密码：</label>
+								<div class="controls">
+									<input type="password"  id='password' placeholder="">
 								</div>
 							</div>
 						</form>

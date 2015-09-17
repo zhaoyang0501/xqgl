@@ -85,7 +85,7 @@ a:hover,a:active,a:focus{color:#c00;}
 #container .content .area_right .box .inner{ width:242px; overflow:hidden; margin:3px; background:#ffffff;border:1px solid #EDBABA }
 
 #container .content .area_right .box .login{ height:215px;color:#404040 }
-#container .content .area_right .box .login span{ width:66px;text-align:right;display:inline-block;font-size:12px; }
+#container .content .area_right .box .login span{ text-align:right;display:inline-block;font-size:12px; }
 #container .content .area_right .box .login ul{ float:left;margin-left:12px;*margin-left:3px;display:inline }
 #container .content .area_right .box .login li{ margin-top:10px; line-height: 38px;_line-height: 40px;}
 #container .content .area_right .box .login li select{border:1px solid #ccc;}

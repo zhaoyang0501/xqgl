@@ -120,10 +120,7 @@ public class WorkerAction extends PageAction {
 	@Action(value = "update", results = { @Result(name = "success",  type = "json",params={"ignoreHierarchy","false"}) })  
 	public String update() {
 		Worker bean = workerService.find(worker.getId());
-		/*bean.setCarno(worker.getCarno());
-		bean.setComefrom(worker.getComefrom());
-		bean.setName(worker.getName());
-		bean.setPhone(worker.getPhone());*/
+		
 		workerService.save(bean);
 		getResultMap().put("state", "success");
 		getResultMap().put("msg", "修改成功");

@@ -43,7 +43,7 @@
 							</div>
 							<div class="box well form-inline">
 								<span>访客姓名：</span>
-								<input type="text" id="_name" >
+								<input type="text" id="_guestName" >
 								<a onclick="$.adminGuest.initSearchDataTable()"
 									class="btn btn-info" data-loading-text="正在加载..."><i class="icon-search"></i>查询</a>
 							</div>

@@ -12,7 +12,10 @@
 		<link type="text/css" rel="stylesheet" href="pagination_new.css"  />
 		<script type="text/javascript">
 			$(document).ready(function(){
-				$("#_notice").addClass("current");
+				if('${news.type}'=='1')
+				$("#_news").addClass("current");
+				else
+					$("#_notice").addClass("current");
 				if("${tip}" != null && "${tip}" != ""){
 					alert("${tip}");
 				}
@@ -39,29 +42,28 @@
 			</div>
 			<!-- 面包屑 -->
 			<div class="address">
-				目前位置：<a href="" >首页</a><span>></span><span>小区公告</span>
+				目前位置：<a href="" >首页</a><span>></span><span>${news.type=='1'?"小区新闻":"通知通告"}</span>
 			</div>
 			<!-- 正文 -->
 			<div class="readbox">
-				<div class="title"><span>小区公告</span></div>
-				<div class="view">
-					<div class="list" id="dataList">
-						<ul>
-						<c:forEach items="${newss}" var="bean">
-						<li><a href="detail?id=${bean.id}" target="_blank">${bean.title}</a><span>${bean.createDate}</span></li>
-						</c:forEach>
-						</ul>
-					</div>
-					<div class="clear"></div>
-					<div id="pageNavigation"
-						style="height: 50px; display: block; padding-top: 15px; margin: auto;">
-						<div class="pagination">
-								<a href="./news?page=${page>0?page:1}" class="current prev">下一页</a>
-								<a href="./news?page=${page+1 }" class="next">下一页</a>
-						</div>
+					<div class="view">
+						
+
+<div class="detail">
+	<h3>${news.title }</h3>
+	<div class="source">
+		<span class="date">发布时间：${news.createDate }</span>&nbsp;&nbsp;
+		<span>来源：${news.comefrom }</span>&nbsp;&nbsp;
+	</div>
+	<div id="articleContent">&nbsp;
+	${news.context }
+	</div>
+</div>
+
+
+
 					</div>
 				</div>
-			</div>
 			
 		</div>
 		<div class="bot"></div>

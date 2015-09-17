@@ -31,10 +31,10 @@ jQuery.adminWorker = {
 						$('[rel="popover"],[data-rel="popover"]').popover();
 					},
 					"fnServerData" : function(sSource, aoData, fnCallback) {
-						var workerName = $("#_workerName").val();
+						var workerName = $("#_name").val();
 						if (!!workerName) {
 							aoData.push({
-								"name" : "workerName",
+								"name" : "name",
 								"value" : workerName
 							});
 						}
@@ -72,6 +72,12 @@ jQuery.adminWorker = {
 						"mDataProp" : ""
 					}],
 					"aoColumnDefs" : [
+					{
+						'aTargets' : [3],
+						'fnRender' : function(oObj, sVal) {
+							return "<img title='product' alt='product' src='../upload/"+sVal+"' height=''50' width='50'>";
+						}
+					},
 						{
 							'aTargets' : [10],
 							'fnRender' : function(oObj, sVal) {
@@ -119,7 +125,7 @@ jQuery.adminWorker = {
 			$("#_modal").modal('show');
 		},
 		showEdit: function (id){
-			$("#id").val(id);
+			$("#worker.id").val(id);
 			$.ajax({
     			type : "get",
     			url : $.ace.getContextPath() + "/admin/worker/get?id="+id,

@@ -3051,3 +3051,10 @@ position:relative;
 }
 
 
+.modal-footer {
+padding: 14px 15px 15px;
+margin-bottom: 0;
+text-align: center;
+background-color: #35526b;
+border-top: 1px solid #000;
+}

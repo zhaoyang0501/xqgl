@@ -34,7 +34,7 @@ public class OwnerService {
                     public Predicate toPredicate(Root<Owner> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
                     Predicate predicate = cb.conjunction();
                     if (ownerName != null) {
-                         predicate.getExpressions().add(cb.like(root.get("ownerName").as(String.class), ownerName+"%"));
+                         predicate.getExpressions().add(cb.like(root.get("name").as(String.class), ownerName+"%"));
                     }
                     return predicate;
                     }
@@ -50,5 +50,9 @@ public class OwnerService {
      }
      public void save(Owner Owner){
     	 ownerRepository.save(Owner);
+     }
+     public Owner login(String adminUserName,String password){
+    	 List<Owner> adminUsers=ownerRepository.findByUsernameAndPassword(adminUserName, password);
+    	 return adminUsers.size()==0?null:adminUsers.get(0);
      }
 }

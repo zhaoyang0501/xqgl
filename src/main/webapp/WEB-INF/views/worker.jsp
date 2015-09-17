@@ -12,6 +12,7 @@
 		<link type="text/css" rel="stylesheet" href="pagination_new.css"  />
 		<script type="text/javascript">
 			$(document).ready(function(){
+				$("#_worker").addClass("current");
 				if("${tip}" != null && "${tip}" != ""){
 					alert("${tip}");
 				}
@@ -48,7 +49,7 @@
 								<ul>
 									<c:forEach items="${workers}" var="bean">
 										<li>
-											<img width="152" height="172" src="upload/${bean.headImg}" />
+											<img width="152" height="172" src="upload/${bean.headimg}" />
 											<p>
 												
 												<b>姓名：${bean.name}</b>
