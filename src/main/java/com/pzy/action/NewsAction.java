@@ -19,9 +19,16 @@ public class NewsAction extends PageAction {
 	private Date start;
 	private Date end;
 	private List<News> newss;
+	
+	private News news;
+	
+	private String tip;
 	@Autowired
 	private NewsService newsService;
-
+	@Action(value = "create", results = { @Result(name = "success", location = "/WEB-INF/views/admin/owner/create.jsp") })
+	public String create() {
+		return SUCCESS;
+	}
 	@Action(value = "list", results = { @Result(name = "success", type = "json",params={"ignoreHierarchy","false"}) })  
 	public String list() {
 		int pageNumber = (int) (this.getIDisplayStart() / this.getIDisplayLength()) + 1;
@@ -33,6 +40,16 @@ public class NewsAction extends PageAction {
 		this.getResultMap().put("sEcho", getSEcho());
 		return SUCCESS;
 	}
+	
+	@Action(value = "save",  results = { @Result(name = "success", location = "/WEB-INF/views/admin/news/create.jsp") })
+	public String saveit() {
+		news.setCreateDate(new Date());
+		newsService.save(news);
+		tip="发布成功！";
+		return SUCCESS;
+	}
+	
+	
 	public List<News> getNewss() {
 		return newss;
 	}
@@ -54,5 +71,19 @@ public class NewsAction extends PageAction {
 	public void setEnd(Date end) {
 		this.end = end;
 	}
+	public News getNews() {
+		return news;
+	}
 
+	public void setNews(News news) {
+		this.news = news;
+	}
+
+	public String getTip() {
+		return tip;
+	}
+
+	public void setTip(String tip) {
+		this.tip = tip;
+	}
 }
