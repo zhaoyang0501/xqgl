@@ -25,9 +25,10 @@
 		<div class="left-secondary-nav tab-content" >
 			<div class="tab-pane active dailyreport" id="dailyreport">
 				<ul id="nav" class="accordion-nav" >
-					<li><a href="${pageContext.request.contextPath}/admin/grades/index"><i class="icon-upload"></i> 班级审批 </a></li>
-					<li><a href="${pageContext.request.contextPath}/admin/user/index"><i class="icon-zoom-in"></i> 学生管理</a></li>
-					<li><a href="${pageContext.request.contextPath}/admin/news/index"><i class="icon-zoom-in"></i> 新闻管理</a></li>
+					<li><a href="${pageContext.request.contextPath}/admin/guest/create"><i class="icon-upload"></i> 访客登记 </a></li>
+					<li><a href="${pageContext.request.contextPath}/admin/guest/index"><i class="icon-zoom-in"></i> 访客查询</a></li>
+					<li><a href="${pageContext.request.contextPath}/admin/owner/index"><i class="icon-zoom-in"></i> 业主管理</a></li>
+					<li><a href="${pageContext.request.contextPath}/admin/worker/index"><i class="icon-zoom-in"></i> 物业人员管理</a></li>
 				</ul>
 			</div>
 		</div>

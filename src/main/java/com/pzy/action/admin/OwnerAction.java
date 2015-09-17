@@ -1,6 +1,5 @@
 package com.pzy.action.admin;
 
-import java.util.Date;
 import java.util.List;
 
 import org.apache.struts2.convention.annotation.Action;
@@ -12,9 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 
 import com.pzy.action.PageAction;
-import com.pzy.entity.Grades;
 import com.pzy.entity.Owner;
-import com.pzy.service.GradesService;
 import com.pzy.service.OwnerService;
 
 @Namespace("/admin/owner")
@@ -24,15 +21,11 @@ public class OwnerAction extends PageAction {
 	private String id;
 	private Owner owner;
 	private List<Owner> owners;
-	private List<Grades> gradess;
-	@Autowired
-	private GradesService gradesService;
 	@Autowired
 	private OwnerService ownerService;
 	@Autowired
 	@Action(value = "index", results = { @Result(name = "success", location = "/WEB-INF/views/admin/owner/index.jsp") })
 	public String index() {
-		gradess=gradesService.findAllApproved();
 		return SUCCESS;
 	}
 
@@ -118,13 +111,5 @@ public class OwnerAction extends PageAction {
 	public void setOwners(List<Owner> owners) {
 		this.owners = owners;
 	}
-	public List<Grades> getGradess() {
-		return gradess;
-	}
-
-	public void setGradess(List<Grades> grades) {
-		this.gradess = grades;
-	}
-
 
 }
