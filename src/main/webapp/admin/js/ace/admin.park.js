@@ -1,8 +1,8 @@
-jQuery.adminUser = {
-		userDataTable:null,
+jQuery.adminPark = {
+		parkDataTable:null,
 		initSearchDataTable : function() {
-			if (this.userDataTable == null) {
-				this.userDataTable = $('#dt_table_view').dataTable({
+			if (this.parkDataTable == null) {
+				this.parkDataTable = $('#dt_table_view').dataTable({
 					"sDom" : "<'row-fluid'<'span6'l>r>t<'row-fluid'<'span6'i><'span6'p>>",
 					"sPaginationType" : "bootstrap",
 					"oLanguage" : {
@@ -26,16 +26,16 @@ jQuery.adminUser = {
 					"sServerMethod" : "POST",
 					"bProcessing" : true,
 					"bSort" : false,
-					"sAjaxSource" : $.ace.getContextPath() + "/admin/user/list",
+					"sAjaxSource" : $.ace.getContextPath() + "/admin/park/list",
 					"fnDrawCallback" : function(oSettings) {
 						$('[rel="popover"],[data-rel="popover"]').popover();
 					},
 					"fnServerData" : function(sSource, aoData, fnCallback) {
-						var userName = $("#_userName").val();
-						if (!!userName) {
+						var parkName = $("#_parkName").val();
+						if (!!parkName) {
 							aoData.push({
-								"name" : "userName",
-								"value" : userName
+								"name" : "parkName",
+								"value" : parkName
 							});
 						}
 						$.ajax({
@@ -51,30 +51,35 @@ jQuery.adminUser = {
 					"aoColumns" : [ {
 						"mDataProp" : "id"
 					}, {
-						"mDataProp" : "name"
+						"mDataProp" : "state"
 					}, {
-						"mDataProp" : "password"
+						"mDataProp" : "area"
 					}, {
-						"mDataProp" : "address"
+						"mDataProp" : "startDate"
 					}, {
-						"mDataProp" : "tel"
+						"mDataProp" : "endDate"
 					}, {
-						"mDataProp" : "grades.name"
+						"mDataProp" : "carno"
 					}, {
-						"mDataProp" : "email"
-					}, {
-						"mDataProp" : "createDate"
-					}, {
-						"mDataProp" : "role"
+						"mDataProp" : "remark"
 					},{
 						"mDataProp" : ""
 					}],
 					"aoColumnDefs" : [
 						{
-							'aTargets' : [9],
+							'aTargets' : [1],
 							'fnRender' : function(oObj, sVal) {
-								return"  <button class=\"btn2 btn-info\" onclick=\"$.adminUser.deleteUser("+oObj.aData.id+")\"><i class=\"icon-trash\"></i> 删除</button>" +
-								" <button class=\"btn2 btn-info\" onclick=\"$.adminUser.setLead("+oObj.aData.id+")\"><i class=\"icon-pencil\"></i>设为班长</button>";
+								if(sVal=='空闲')
+								return "<span class='label label-success'>"+sVal+"</span>";
+								else
+									return "<span class='label label-warning'>"+sVal+"</span>";
+							}
+						},
+						{
+							'aTargets' : [7],
+							'fnRender' : function(oObj, sVal) {
+								return"  <button class=\"btn2 btn-info\" onclick=\"$.adminPark.deletePark("+oObj.aData.id+")\"><i class=\"icon-trash\"></i> 删除</button>" +
+								" <button class=\"btn2 btn-info\" onclick=\"$.adminPark.showEdit("+oObj.aData.id+")\"><i class=\"icon-pencil\"></i>编辑</button>";
 							}
 						},
 					 {
@@ -85,23 +90,23 @@ jQuery.adminUser = {
 
 				});
 			} else {
-				var oSettings = this.userDataTable.fnSettings();
+				var oSettings = this.parkDataTable.fnSettings();
 				oSettings._iDisplayStart = 0;
-				this.userDataTable.fnDraw(oSettings);
+				this.parkDataTable.fnDraw(oSettings);
 			}
 
 		},
-		deleteUser :function(id){
+		deletePark :function(id){
 			bootbox.confirm( "是否确认删除？", function (result) {
 	            if(result){
 	            	$.ajax({
 	        			type : "get",
-	        			url : $.ace.getContextPath() + "/admin/user/delete?id="+id,
+	        			url : $.ace.getContextPath() + "/admin/park/delete?id="+id,
 	        			dataType : "json",
 	        			success : function(json) {
 	        				if(json.resultMap.state=='success'){
 	        					noty({"text":""+ json.resultMap.msg +"","layout":"top","type":"success","timeout":"2000"});
-	        					$.adminUser.initSearchDataTable();
+	        					$.adminPark.initSearchDataTable();
 	        				}else{
 	        					noty({"text":""+ json.resultMap.msg +"","layout":"top","type":"warning"});
 	        				}
@@ -110,77 +115,59 @@ jQuery.adminUser = {
 	            }
 	        });
 		},
-		showUserAddModal: function(id){
-			$("#userid").val(id);
+		showParkAddModal: function(id){
+			$("#id").val(id);
 			$('#_modal').modal({
 			});
 			$("#_modal").modal('show');
 		},
 		showEdit: function (id){
-			$("#userid").val(id);
+			$("#id").val(id);
 			$.ajax({
     			type : "get",
-    			url : $.ace.getContextPath() + "/admin/user/get?id="+id,
+    			url : $.ace.getContextPath() + "/admin/park/get?id="+id,
     			dataType : "json",
     			success : function(json) {
     				if(json.resultMap.state=='success'){
-    					$("#name").val(json.resultMap.user.name);
-    					$("#nickname").val(json.resultMap.user.nickname);
-    					$("#email").val(json.resultMap.user.email);
-    					$("#password").val(json.resultMap.user.password);
-    					$("#sex").val(json.resultMap.user.sex);
-    					$("#job").val(json.resultMap.user.job);
+    					$("#state").val(json.resultMap.object.state);
+    					$("#area").val(json.resultMap.object.area);
+    					$("#startDate").val(json.resultMap.object.startDate);
+    					$("#endDate").val(json.resultMap.object.endDate);
+    					$("#remark").val(json.resultMap.object.remark);
+    					$("#area").val(json.resultMap.object.area);
+    					$("#carno").val(json.resultMap.object.carno);
     				}else{
     					noty({"text":""+ json.resultMap.msg +"","layout":"top","type":"warning"});
     				}
     			}
     		});
-			$("#user_edit_modal").modal('show');
+			$("#_modal").modal('show');
 		},
 		
-		saveUser: function(id){
+		savePark: function(id){
 			$.ajax({
     			type : "post",
-    			url : $.ace.getContextPath() + "/admin/user/save",
+    			url : $.ace.getContextPath() + "/admin/park/save",
     			data:{
-    				"user.id":$("#userid").val(),
-    				"user.name":$("#username").val(),
-    				"user.password":$("#userpassword").val(),
-    				"user.address":$("#useraddress").val(),
-    				"user.grades.id":$("#usergrades").val(),
-    				"user.sex":$("#usersex").val(),
-    				"user.tel":$("#usertel").val(),
-    				"user.email":$("#useremail").val()
+    				"park.id":$("#id").val(),
+    				"park.state":$("#state").val(),
+    				"park.area":$("#area").val(),
+    				"park.startDate":$("#startDate").val(),
+    				"park.endDate":$("#endDate").val(),
+    				"park.remark":$("#remark").val(),
+    				"park.carno":$("#carno").val()
     			},
     			dataType : "json",
     			success : function(json) {
     				if(json.resultMap.state=='success'){
-    					$("#user_edit_modal").modal('hide');
+    					$("#_modal").modal('hide');
     					noty({"text":""+ json.resultMap.msg +"","layout":"top","type":"success","timeout":"2000"});
-    					$.adminUser.initSearchDataTable();
+    					$.adminPark.initSearchDataTable();
     				}else{
     					noty({"text":""+ json.resultMap.msg +"","layout":"top","type":"warning"});
     				}
     			}
     		});
 		},
-		setLead: function(id){
-			$.ajax({
-    			type : "post",
-    			url : $.ace.getContextPath() + "/admin/user/setLead",
-    			data:{
-    				"user.id":id
-    			},
-    			dataType : "json",
-    			success : function(json) {
-    				if(json.resultMap.state=='success'){
-    					$("#user_edit_modal").modal('hide');
-    					noty({"text":""+ json.resultMap.msg +"","layout":"top","type":"success","timeout":"2000"});
-    					$.adminUser.initSearchDataTable();
-    				}else{
-    					noty({"text":""+ json.resultMap.msg +"","layout":"top","type":"warning"});
-    				}
-    			}
-    		});
-		}
+		
 };
