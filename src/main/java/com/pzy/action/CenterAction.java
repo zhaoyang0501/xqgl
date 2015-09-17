@@ -14,6 +14,7 @@ import com.pzy.entity.Guest;
 import com.pzy.entity.Owner;
 import com.pzy.service.CostService;
 import com.pzy.service.GuestService;
+import com.pzy.service.OwnerService;
 
 @Namespace("/")
 @ParentPackage("json-default") 
@@ -22,8 +23,14 @@ public class CenterAction extends PageAction {
 	private List<Guest> guests;
 	
 	private List<Cost> costs;
+	
+	private String tip;
+
+	private Owner owner;
 	@Autowired
 	private GuestService guestService;
+	@Autowired
+	private OwnerService ownerService;
 	
 	@Autowired
 	private CostService costService;
@@ -32,6 +39,16 @@ public class CenterAction extends PageAction {
 		Owner owner=(Owner)ActionContext.getContext().getSession().get("user");
 		guests=this.guestService.findByOwner(owner);
 		costs=costService.findByOwner(owner);
+		return SUCCESS;
+	}
+	
+	@Action(value = "docenter", results = { @Result(name = "success", location = "/WEB-INF/views/center.jsp") })
+	public String doregister() throws Exception {
+		ownerService.save(owner);
+		ActionContext.getContext().getSession().put("user", owner);
+		guests=this.guestService.findByOwner((Owner)ActionContext.getContext().getSession().get("user"));
+		costs=costService.findByOwner(owner);
+		tip="用户信息修改成功！";
 		return SUCCESS;
 	}
 	public List<Guest> getGuests() {
@@ -46,5 +63,21 @@ public class CenterAction extends PageAction {
 	}
 	public void setCosts(List<Cost> costs) {
 		this.costs = costs;
+	}
+	
+	public Owner getOwner() {
+		return owner;
+	}
+
+	public void setOwner(Owner owner) {
+		this.owner = owner;
+	}
+	
+	public String getTip() {
+		return tip;
+	}
+
+	public void setTip(String tip) {
+		this.tip = tip;
 	}
 }

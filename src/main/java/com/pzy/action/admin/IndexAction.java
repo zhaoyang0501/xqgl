@@ -3,9 +3,12 @@ package com.pzy.action.admin;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.Result;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import com.pzy.entity.Worker;
+import com.pzy.service.WorkerService;
 
 @Namespace("/admin")
 public class IndexAction  extends ActionSupport{
@@ -13,7 +16,9 @@ public class IndexAction  extends ActionSupport{
 	private String  password;
 	private String tip;
     
-
+	@Autowired
+	private WorkerService workService;
+	
 	public void setPassword(String password) {
 		this.password = password;
 	}
@@ -28,6 +33,7 @@ public class IndexAction  extends ActionSupport{
      @Action(value = "loginout", results = { @Result(name = "success", location = "/WEB-INF/views/admin/login.jsp") })
      public String loginout(){
     	 	ActionContext.getContext().getSession().remove("adminuser");
+    	 	ActionContext.getContext().getSession().remove("worker");
     	 	ActionContext.getContext().getSession().clear();
     	 	return SUCCESS;
      }
@@ -39,11 +45,20 @@ public class IndexAction  extends ActionSupport{
     	 }
     			
     	 else{
-    		 tip="登录失败，用户名或者密码不正确";
-    		 return INPUT;
+    		 Worker worker= workService.login(userName, password);
+    		 if(worker!=null){
+    	    		ActionContext.getContext().getSession().put("worker",worker);
+    	            return SUCCESS; 
+    	    	}
+    	    	else{
+    	    		ActionContext.getContext().getSession().clear();
+    	    		this.tip="登陆失败 不存在此用户名或密码!";
+    	    		return LOGIN;
+    	    	}
     	 } 
          
      }
+   
  	public String getTip() {
 		return tip;
 	}

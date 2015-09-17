@@ -13,6 +13,9 @@
 		<script type="text/javascript">
 			$(document).ready(function(){
 				$("#_center").addClass("current");
+				if("${tip}" != null && "${tip}" != ""){
+					alert("${tip}");
+				}
 			});
 		</script>
 </head>
@@ -49,18 +52,18 @@
 						</ul>
 					</div>
 					<div class="view register">
-						<form action="doregister" id="registerForm" name="registerForm" method="post">
+						
 							<div class="class">
 								<b>用户信息</b>
 							</div>
 							<div class="form">
+							<form action="docenter" id="registerForm" name="registerForm" method="post">
 								<ul>
-									
 									<li>
 										<div class="name">
 											<b>门牌号码：</b>
 										</div>
-										<input class="size1" type="text" id="owner.id" name="owner.id"/>
+										<input class="size1" type="text" id="owner.id" value="${sessionScope.user.id}" readonly="readonly" name="owner.id"/>
 										<div class="notice">
 											例如 1-110
 										</div>
@@ -70,21 +73,21 @@
 										<div class="name">
 											<b>用户名：</b>
 										</div>
-										<input class="size1" type="text" id="username" name="owner.username"/>
+										<input value="${sessionScope.user.username}" class="size1" type="text" id="username" name="owner.username"/>
 									</li>
 									
 									<li>
 										<div class="name">
 											<b>姓名：</b>
 										</div>
-										<input class="size1" type="text" id="name" name="owner.name"/>
+										<input value="${sessionScope.user.name}" class="size1" type="text" id="name" name="owner.name"/>
 									</li>
 									
 									<li>
 										<div class="name">
 											<b>登录密码：</b>
 										</div>
-										<input class="size1" type="password" id="password" name="owner.password" autocomplete="off" style="font-family: Tahoma;"/>
+										<input  value="${sessionScope.user.password}" class="size1" type="password" id="password" name="owner.password" autocomplete="off" style="font-family: Tahoma;"/>
 										<div class="notice">
 											密码长度为6－20个字符，字母区分大小写。密码不可以过于简单，可使用英文字母及数字以及特殊字符组合。
 										</div>
@@ -121,7 +124,7 @@
 										<div class="name">
 											<b>手机：</b>
 										</div>
-										<input class="size1" type="text" id="phone" name="owner.phone"/>
+										<input  value="${sessionScope.user.phone}" class="size1" type="text" id="phone" name="owner.phone"/>
 										<div class="notice">
 											例如：13912345678。可用于找回您的密码、接收活动短信等。
 										</div>
@@ -130,24 +133,26 @@
 										<div class="name">
 											<b>详细地址：</b>
 										</div>
-										<input class="size1" type="text" id="addr" name="owner.addr"/>
+										<input value="${sessionScope.user.addr}"  class="size1" type="text" id="addr" name="owner.addr"/>
 										
 									</li>
 									<li>
 										<div class="name">
 											<b>房屋面积：</b>
 										</div>
-										<input class="size1" type="text" id="area" name="owner.area"/>
+										<input  value="${sessionScope.user.area}"  class="size1" type="text" id="area" name="owner.area"/>
 									</li>
 									
 									<li>
 										<div class="name">
 											<b>家庭人口：</b>
 										</div>
-										<input class="size1" type="text" id="count" name="owner.count"/>
+										<input value="${sessionScope.user.count}" class="size1" type="text" id="count" name="owner.count"/>
 										
 									</li>
 								</ul>
+								<input type="submit"  value="保存修改" style="margin: 15px 0px 0px 390px;"/>
+								</form>
 							</div>
 							<div class="class">
 								<b>我的访客记录</b>

@@ -16,6 +16,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import com.pzy.entity.Owner;
 import com.pzy.entity.Worker;
 import com.pzy.repository.WorkerRepository;
 
@@ -50,5 +51,9 @@ public class WorkerService {
      }
      public void save(Worker Worker){
     	 workerRepository.save(Worker);
+     }
+     public Worker login(String adminUserName,String password){
+    	 List<Worker> adminUsers=workerRepository.findByUsernameAndPassword(adminUserName, password);
+    	 return adminUsers.size()==0?null:adminUsers.get(0);
      }
 }
