@@ -51,4 +51,8 @@ public class ParkService {
      public void save(Park Park){
     	 parkRepository.save(Park);
      }
+     
+     public List<Park> findByArea(String area){
+    	 return   parkRepository.findByArea(area);
+     }
 }

@@ -11,16 +11,12 @@ import org.springframework.data.domain.Page;
 
 import com.pzy.entity.News;
 import com.pzy.service.NewsService;
-/***
- * Introduction
- * @author panchaoyang
- *
- */
-@Namespace("/notice")
+
+@Namespace("/")
 @ParentPackage("json-default") 
 public class NoticeAction extends PageAction {
 	
-	private Integer page;
+	private Integer page=1;
 	
 	private List<News> newss;
 	@Autowired
@@ -28,12 +24,25 @@ public class NoticeAction extends PageAction {
 
 	@Action(value = "notice", results = { @Result(name = "success", location = "/WEB-INF/views/notice.jsp") })
 	public String notice() {
-		Page<News> list = newsService.findAll(page, 20,2);
+		Page<News> list = newsService.findAll(page, 15,2);
 		newss=list.getContent();
 		return SUCCESS;
 	}
 	
 	
+
+	public Integer getPage() {
+		return page;
+	}
+
+
+
+	public void setPage(Integer page) {
+		this.page = page;
+	}
+
+
+
 	public List<News> getNewss() {
 		return newss;
 	}

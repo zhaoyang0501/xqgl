@@ -12,11 +12,11 @@ import org.springframework.data.domain.Page;
 import com.pzy.entity.News;
 import com.pzy.service.NewsService;
 
-@Namespace("/news")
+@Namespace("/")
 @ParentPackage("json-default") 
 public class NewsAction extends PageAction {
 	
-	private Integer page;
+	private Integer page=1;
 	
 	private List<News> newss;
 	@Autowired
@@ -24,12 +24,25 @@ public class NewsAction extends PageAction {
 
 	@Action(value = "news", results = { @Result(name = "success", location = "/WEB-INF/views/news.jsp") })
 	public String news() {
-		Page<News> list = newsService.findAll(page, 20,1);
+		Page<News> list = newsService.findAll(page, 15,1);
 		newss=list.getContent();
 		return SUCCESS;
 	}
 	
 	
+
+	public Integer getPage() {
+		return page;
+	}
+
+
+
+	public void setPage(Integer page) {
+		this.page = page;
+	}
+
+
+
 	public List<News> getNewss() {
 		return newss;
 	}
