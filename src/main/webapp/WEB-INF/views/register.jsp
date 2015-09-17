@@ -6,6 +6,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <script language="javaScript" type="text/javascript" src="js/jquery.js" ></script>
+<script language="javaScript" type="text/javascript" src="js/jquery.validate.js" ></script>
+<style type="text/css">
+			.error label {
+				display: block  !important;
+				margin-left: 1em;
+				width: auto;
+				float: none  !important;
+				color: red;
+				}
+		</style>
 <link type="text/css" rel="stylesheet" href="css/style.css" />
 <link type="text/css" rel="stylesheet" href="css/pagination_new.css" />
 		<title>小区管理</title>
@@ -13,6 +23,28 @@
 		<script type="text/javascript">
 			$(document).ready(function(){
 				$("#_index").addClass("current");
+				
+				var formvalidate= $("#registerForm").validate({
+					errorLabelContainer: $("#registerForm div.error"),
+					ignore:"",
+					rules: {
+						"owner.id":  "required",
+						"owner.username":  "required",
+						"owner.name":  "required",
+						"owner.area": {number:true},
+						"owner.count":  {digits:true},
+						"owner.password":  {required:true, minlength: 8}
+						},
+					messages: {
+						"owner.id":"请填写门牌号码",
+						"owner.username":"请填写用户名",
+						"owner.name":"请填写姓名",
+						"owner.area":{ number: "面积必须是数字"},
+						"owner.count":{ digits: "人口必须是整数"},
+						"owner.password":{ required: "请输入密码",minlength: "密码至少8位"}
+						
+					}
+				});
 			});
 		</script>
 </head>
@@ -50,6 +82,8 @@
 					</div>
 					<div class="view register">
 						<form action="doregister" id="registerForm" name="registerForm" method="post">
+							<div class="error">
+</div>
 							<div class="class">
 								<b>用户信息</b>
 							</div>
