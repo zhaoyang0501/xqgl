@@ -39,11 +39,11 @@
 					<div class="span12">
 						<div class="content-widgets light-gray">
 							<div class="widget-head  bondi-blue" >
-								<h3>业主管理</h3>
+								<h3>停车位管理</h3>
 							</div>
 							<div class="box well form-inline">
-								<span>业主姓名：</span>
-								<input type="text" id="_name" >
+								<span>车牌号码：</span>
+								<input type="text" id="_parkName" >
 								<a onclick="$.adminPark.initSearchDataTable()"
 									class="btn btn-info" data-loading-text="正在加载..."><i class="icon-search"></i>查询</a>
 							</div>

@@ -84,7 +84,7 @@
 			<button type="button" class="close" data-dismiss="modal">×</button>
 			<label id="_modal_header_label"></label>
 		</div>
-		<div class="modal-body" style="min-height: 600px;">
+		<div class="modal-body" >
 			<div class="row-fluid">
 				<div class="span12">
 					<div class="form-container grid-form form-background left-align form-horizontal">

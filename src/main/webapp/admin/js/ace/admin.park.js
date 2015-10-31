@@ -34,7 +34,7 @@ jQuery.adminPark = {
 						var parkName = $("#_parkName").val();
 						if (!!parkName) {
 							aoData.push({
-								"name" : "parkName",
+								"name" : "name",
 								"value" : parkName
 							});
 						}

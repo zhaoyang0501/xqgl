@@ -35,7 +35,7 @@ jQuery.adminNews = {
 						var name = $("#_name").val();
 						if (!!name) {
 							aoData.push({
-								"name" : "title",
+								"name" : "name",
 								"value" : name
 							});
 						}
